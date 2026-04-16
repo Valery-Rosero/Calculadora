@@ -80,16 +80,17 @@ http://localhost:5000
 
 ## Participacion ##
 
-  <Johan Delgado>
+  **Johan Delgado**
+  
     API REST separada con Flask y endpoint principal en `/api/calculate`
     Arquitectura modular con carpetas diferenciadas para rutas, servicios y utilidades
     Configuración centralizada en `config.py` y arranque por `run.py`
     se edito la arquitectura monolítica para facilitar mantenimiento y escalabilidad :p
 
-  <Juan Manuel Matabanchoy>
+  **Juan Manuel Matabanchoy**
 
     Estructuracion frontend y estilos
 
-  <Valery Rosero>
+  **Valery Rosero**
     
     Creacion repositorio  logica en javascript 
