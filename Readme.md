@@ -7,25 +7,36 @@ Calculadora con interfaz web construida con **Flask** (Python) + HTML/CSS/JS.
 ## 📁 Estructura
 
 ```
-calculator/
-├── app.py              # Backend Flask (API REST)
-├── requirements.txt    # Dependencias
-└── static/
-    └── index.html      # Interfaz (frontend)
+config.py
+run.py
+requirements.txt
+app/
+    __init__.py
+    routes/
+        calculator.py
+        static_pages.py
+    services/
+        calculator.py
+        converter.py
+    utils/
+        formatters.py
+        validators.py
+static/
+    index.html
 ```
 
 ---
 
-## 🚀 Cómo ejecutar
+##  Cómo ejecutar
 
 ### 1. Instalar dependencias
 ```bash
 pip install -r requirements.txt
 ```
-### importanteeeeeee ####
+
 ### 2. Correr el servidor
 ```bash
-python app.py
+python run.py
 ```
 
 ### 3. Abrir en el navegador
@@ -35,7 +46,7 @@ http://localhost:5000
 
 ---
 
-## ⚙️ Funcionalidades
+##  Funcionalidades
 
 ### Básica
 - Suma, resta, multiplicación, división
@@ -67,26 +78,18 @@ http://localhost:5000
 - Guarda las últimas 50 operaciones
 - Clic en cualquier resultado para reutilizarlo
 
----
+## Participacion ##
 
-## 🌐 Endpoints de la API
+  <Johan Delgado>
+    API REST separada con Flask y endpoint principal en `/api/calculate`
+    Arquitectura modular con carpetas diferenciadas para rutas, servicios y utilidades
+    Configuración centralizada en `config.py` y arranque por `run.py`
+    se edito la arquitectura monolítica para facilitar mantenimiento y escalabilidad :p
 
-| Método | Ruta | Descripción |
-|--------|------|-------------|
-| POST | `/calculate` | Operación matemática |
+  <Juan Manuel Matabanchoy>
 
-### Ejemplo de petición
-```json
-POST /calculate
-{
-  "operation": "sqrt",
-  "values": [144]
-}
-```
-```json
-// Respuesta
-{ "result": 12 }
-```
+    Estructuracion frontend y estilos
 
-### Operaciones disponibles
-`add`, `subtract`, `multiply`, `divide`, `power`, `sqrt`, `percentage`, `log`, `factorial`, `sin`, `cos`, `tan`, `abs`, `convert`, `expression`
+  <Valery Rosero>
+    
+    Creacion repositorio  logica en javascript 

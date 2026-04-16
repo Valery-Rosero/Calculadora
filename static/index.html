@@ -626,7 +626,7 @@ async function calculate() {
   const opMap = { '+': 'add', '−': 'subtract', '×': 'multiply', '÷': 'divide' };
   const expr = `${prev} ${op} ${current}`;
   try {
-    const res = await apiCall('/calculate', { operation: opMap[op], values: [a, b] });
+    const res = await apiCall('/api/calculate', { operation: opMap[op], values: [a, b] });
     const result = String(res.result);
     addHistory(expr, result);
     document.getElementById('history').textContent = `${expr} =`;
@@ -659,7 +659,7 @@ async function advancedFn(fn) {
   else if (fn === 'abs') { body = { operation: 'expression', expression: `abs(${val})` }; label = `|${val}|`; }
 
   try {
-    const res = await apiCall('/calculate', body);
+    const res = await apiCall('/api/calculate', body);
     const result = String(res.result);
     addHistory(label, result);
     document.getElementById('adv-result').textContent = `${label} = ${result}`;
@@ -674,7 +674,7 @@ async function calcPower() {
   const exp = parseFloat(document.getElementById('pwExp').value);
   if (isNaN(base) || isNaN(exp)) return;
   try {
-    const res = await apiCall('/calculate', { operation: 'power', values: [base, exp] });
+    const res = await apiCall('/api/calculate', { operation: 'power', values: [base, exp] });
     const result = String(res.result);
     addHistory(`${base}^${exp}`, result);
     document.getElementById('adv-result').textContent = `${base}^${exp} = ${result}`;
@@ -694,7 +694,7 @@ async function doConvert() {
   const to = document.getElementById('convTo').value;
   if (isNaN(value)) return;
   try {
-    const res = await apiCall('/calculate', {
+    const res = await apiCall('/api/calculate', {
       operation: 'convert', values: [value], from_unit: from, to_unit: to
     });
     const result = parseFloat(res.result.toFixed ? res.result.toFixed(8) : res.result);
