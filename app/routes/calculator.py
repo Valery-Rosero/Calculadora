@@ -1,15 +1,3 @@
-"""
-Rutas de la API de la calculadora.
-
-Este archivo SOLO maneja HTTP:
-  - Leer el request
-  - Llamar al servicio correspondiente
-  - Retornar la respuesta JSON
-
-No hay lógica de negocio aquí. Si una ruta crece demasiado,
-es señal de que algo debe moverse al servicio.
-"""
-
 import logging
 
 from flask import Blueprint, current_app, jsonify, request
@@ -25,23 +13,6 @@ calculator_bp = Blueprint("calculator", __name__)
 
 @calculator_bp.route("/calculate", methods=["POST"])
 def calculate():
-    """
-    Endpoint principal de cálculo.
-
-    Body JSON esperado:
-    {
-        "operation": "add" | "subtract" | ... | "convert" | "expression",
-        "values": [número, ...],
-        "from_unit": "km",      # solo para 'convert'
-        "to_unit": "m",         # solo para 'convert'
-        "expression": "2+2"     # solo para 'expression'
-    }
-
-    Returns:
-        200: { "result": <número> }
-        400: { "error": "<mensaje>" }
-        500: { "error": "<mensaje>" }
-    """
     payload = request.get_json(silent=True)
 
     if not payload:

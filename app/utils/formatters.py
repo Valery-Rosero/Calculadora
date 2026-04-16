@@ -1,35 +1,7 @@
-"""
-Formateadores de resultados.
-Centralizar el formateo aquí garantiza consistencia en toda la app
-y hace que sea fácil cambiar la presentación de números sin tocar
-la lógica de negocio.
-"""
-
 from typing import Union
 
-
 def format_number(value: Union[int, float], precision: int = 10) -> Union[int, float]:
-    """
-    Formatea un número para presentarlo de forma limpia:
-    - Si es entero (o float sin parte decimal), retorna int.
-    - Si tiene decimales, los redondea a 'precision' dígitos
-      y elimina ceros finales innecesarios.
 
-    Args:
-        value:     Número a formatear.
-        precision: Máximo de decimales significativos.
-
-    Returns:
-        int si el valor es entero, float si tiene decimales.
-
-    Examples:
-        >>> format_number(4.0)
-        4
-        >>> format_number(3.14159265358979)
-        3.1415926536
-        >>> format_number(0.10000000000)
-        0.1
-    """
     if not isinstance(value, (int, float)):
         return value
 

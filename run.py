@@ -1,7 +1,6 @@
-"""
-Punto de entrada de la aplicación.
-Ejecutar con: python run.py
-"""
+
+#Punto de entrada de la aplicación.
+#Ejecutar con: python run.py
 
 from app import create_app
 from config import get_config

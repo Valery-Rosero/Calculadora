@@ -1,22 +1,7 @@
-"""
-Servicio de conversión de unidades.
-
-Las unidades están organizadas por DIMENSIÓN FÍSICA en diccionarios separados.
-Esto previene conversiones absurdas como km → kg, que antes eran posibles
-porque todo estaba en el mismo dict.
-
-Cada dimensión tiene una unidad BASE (indicada en el comentario).
-Para convertir: valor → unidad base → unidad destino.
-"""
 
 import logging
 
 logger = logging.getLogger(__name__)
-
-# ---------------------------------------------------------------------------
-# Tablas de conversión por dimensión física
-# Cada valor es el factor para convertir ESA unidad a la unidad base.
-# ---------------------------------------------------------------------------
 
 # Base: metros
 LENGTH_UNITS: dict[str, float] = {
@@ -77,20 +62,7 @@ for _table in [LENGTH_UNITS, WEIGHT_UNITS, SPEED_UNITS, AREA_UNITS, VOLUME_UNITS
 
 
 def convert_units(value: float, from_unit: str, to_unit: str) -> float:
-    """
-    Convierte un valor entre unidades del mismo tipo físico.
 
-    Args:
-        value:     Valor numérico a convertir.
-        from_unit: Unidad de origen.
-        to_unit:   Unidad de destino.
-
-    Returns:
-        Valor convertido como float.
-
-    Raises:
-        ValueError: Si las unidades no existen o son de distinto tipo físico.
-    """
     # Temperatura tiene lógica especial (no es multiplicativa)
     if from_unit in TEMPERATURE_UNITS or to_unit in TEMPERATURE_UNITS:
         return _convert_temperature(value, from_unit, to_unit)
@@ -118,17 +90,7 @@ def convert_units(value: float, from_unit: str, to_unit: str) -> float:
 
 
 def _convert_temperature(value: float, from_unit: str, to_unit: str) -> float:
-    """
-    Conversión de temperatura vía Celsius como unidad intermedia.
 
-    Args:
-        value:     Temperatura de origen.
-        from_unit: 'C', 'F' o 'K'.
-        to_unit:   'C', 'F' o 'K'.
-
-    Raises:
-        ValueError: Si alguna unidad no es una unidad de temperatura válida.
-    """
     if from_unit not in TEMPERATURE_UNITS:
         raise ValueError(f"Unidad de temperatura inválida: '{from_unit}'.")
     if to_unit not in TEMPERATURE_UNITS:

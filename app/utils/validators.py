@@ -1,24 +1,7 @@
-"""
-Validadores de entrada.
-Cada función valida una parte del payload del request
-y lanza ValueError con mensajes claros si algo falla.
-Separar validaciones aquí evita contaminar la lógica de negocio.
-"""
-
 from typing import Any
 
 
 def validate_values(values: Any, min_count: int = 1) -> list:
-    """
-    Valida que 'values' sea una lista de números con suficientes elementos.
-
-    Args:
-        values:    El valor recibido del payload JSON.
-        min_count: Mínimo de elementos requeridos.
-
-    Raises:
-        ValueError: Si la estructura o los tipos no son válidos.
-    """
     if not isinstance(values, list):
         raise ValueError("'values' debe ser una lista.")
 
@@ -38,28 +21,13 @@ def validate_values(values: Any, min_count: int = 1) -> list:
 
 
 def validate_operation(operation: Any) -> str:
-    """
-    Valida que 'operation' sea un string no vacío.
-
-    Raises:
-        ValueError: Si el valor no es un string válido.
-    """
+    
     if not isinstance(operation, str) or not operation.strip():
         raise ValueError("'operation' debe ser un string no vacío.")
     return operation.strip()
 
 
 def validate_expression(expression: Any, max_length: int = 200) -> str:
-    """
-    Valida una expresión matemática libre.
-
-    Args:
-        expression: El string de la expresión.
-        max_length:  Longitud máxima permitida.
-
-    Raises:
-        ValueError: Si la expresión no es segura o está mal formada.
-    """
     if not isinstance(expression, str) or not expression.strip():
         raise ValueError("'expression' debe ser un string no vacío.")
 
@@ -81,12 +49,6 @@ def validate_expression(expression: Any, max_length: int = 200) -> str:
 
 
 def validate_units(from_unit: Any, to_unit: Any) -> tuple[str, str]:
-    """
-    Valida que ambas unidades sean strings no vacíos.
-
-    Raises:
-        ValueError: Si alguna unidad es inválida.
-    """
     if not isinstance(from_unit, str) or not from_unit.strip():
         raise ValueError("'from_unit' debe ser un string no vacío.")
     if not isinstance(to_unit, str) or not to_unit.strip():
